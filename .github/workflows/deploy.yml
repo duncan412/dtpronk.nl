@@ -26,3 +26,4 @@ jobs:
         with:
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           dep: deploy
+          deployer-version: "8.x"
