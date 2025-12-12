@@ -113,10 +113,12 @@
         </section>
 
         <!-- Code Section -->
-        <section class="mt-20 bg-[#c8e8ea] p-8 rounded-xl max-w-4xl mx-auto">
+        <section class="mt-20 bg-[#c8e8ea] p-8 rounded-xl max-w-7xl mx-auto">
             <h3 class="text-xl font-semibold mb-2">My code</h3>
             <p class="text-gray-700 mb-4">A little sneak peek of what I am up to.</p>
-            <div class="h-24 bg-white rounded-md shadow-inner"></div>
+            <div class="h-auto rounded-md">
+              <x-github-activity />
+            </div>
         </section>
 
         <!-- Future Updates -->
