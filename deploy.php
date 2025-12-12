@@ -9,7 +9,7 @@ set('repository', 'git@github.com:duncan412/dtpronk.nl.git');
 
 set('branch', 'main');
 
-set('composer_options', 'install --no-dev --no-interaction --prefer-dist --optimize-autoloader');
+set('composer_options', '--no-dev --no-interaction --prefer-dist --optimize-autoloader');
 
 add('shared_files', ['.env']);
 add('shared_dirs', ['storage']);
