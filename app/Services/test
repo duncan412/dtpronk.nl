@@ -1,0 +1,81 @@
+<?php
+$username = "YOUR_USERNAME_HERE";      // Replace with your GitHub username
+$accessToken = "YOUR_ACCESS_TOKEN";    // Replace with your personal access token
+$apiUrl = "https://api.github.com/graphql";
+
+$query = <<<GRAPHQL
+query {
+  user(login: "{$username}") {
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            contributionCount
+            date
+          }
+        }
+      }
+    }
+  }
+}
+GRAPHQL;
+
+// ---- Perform GraphQL request ---- //
+$ch = curl_init($apiUrl);
+
+curl_setopt_array($ch, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_HTTPHEADER => [
+        "Authorization: Bearer {$accessToken}",
+        "Content-Type: application/json",
+        "User-Agent: PHP" // GitHub requires a UA header
+    ],
+    CURLOPT_POSTFIELDS => json_encode(['query' => $query])
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    die("Error fetching GitHub contributions: " . curl_error($ch));
+}
+
+curl_close($ch);
+
+$data = json_decode($response, true);
+
+// ---- Extract contribution data ---- //
+$contributions = $data['data']['user']['contributionsCollection']['contributionCalendar'];
+$weeks = $contributions['weeks'];
+
+// ---- Generate HTML table ---- //
+echo '<table id="contribution-table">';
+
+for ($dayOfWeek = 0; $dayOfWeek < 7; $dayOfWeek++) {
+    echo "<tr>";
+
+    for ($weekIndex = 0; $weekIndex < 53; $weekIndex++) {
+        $week = $weeks[$weekIndex] ?? null;
+        $contributionDay = $week['contributionDays'][$dayOfWeek] ?? null;
+        $count = $contributionDay['contributionCount'] ?? 0;
+
+        if ($count < 5) {
+            $color = 0;
+        } elseif ($count < 10) {
+            $color = 1;
+        } elseif ($count < 15) {
+            $color = 2;
+        } elseif ($count < 20) {
+            $color = 3;
+        } else {
+            $color = 4;
+        }
+
+        echo "<td class=\"color-{$color}\"></td>";
+    }
+
+    echo "</tr>";
+}
+
+echo "</table>";
