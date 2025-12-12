@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'github' => [
+        'token' => env('GITHUB_TOKEN'),
+        'username' => env('GITHUB_USERNAME'),
+        'graphql_endpoint' => env('GITHUB_GRAPHQL'),
+        'cache_ttl' => env('GITHUB_CACHE_TTL', 3600),
+    ],
+
 ];
