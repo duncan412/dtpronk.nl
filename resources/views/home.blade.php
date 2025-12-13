@@ -5,8 +5,19 @@
 @section('content')
     <header class="bg-[#c8e8ea] h-48 flex items-center justify-center px-8">
         <div class="max-w-4xl">
+            <div id="typed-strings">
+                <p>{{ __('web developer') }}</p>
+                <p>{{ __('problem solver') }}</p>
+                <p>{{ __('PHP fanatic') }}</p>
+                <p>{{ __('Symfony fan') }}</p>
+                <p>{{ __('Laravel fan') }}</p>
+                <p>{{ __('cyclist') }}</p>
+                <p>{{ __('chess player') }}</p>
+                <p>{{ __('gamer') }}</p>
+                <p>{{ __('movie lover') }}</p>
+            </div>
             <h2 class="text-2xl font-semibold text-gray-800 mb-2">
-                Hi, I am Duncan the
+                Hi, I am Duncan the <span id="typed"></span>
             </h2>
             <p class="text-gray-700">
                 Welcome to my portfolio. I am a curious person that never grows tired of learning new things.
@@ -37,7 +48,8 @@
                     <div class="flex items-center">
                         <div class="w-3 h-3 bg-[#58b8bd] rounded-full mr-4"></div>
                         <h3 class="text-lg font-semibold">
-                            2025 - current <span class="font-normal text-gray-600">| Qabana - Web Developer & DevOps</span>
+                            2025 - current <span
+                                class="font-normal text-gray-600">| Qabana - Web Developer & DevOps</span>
                         </h3>
                     </div>
                     <p class="ml-7 text-gray-600">
@@ -54,8 +66,10 @@
                         </h3>
                     </div>
                     <p class="ml-7 text-gray-600">
-                        Working on different kind of CMS systems, from out of the box Statamic, to fully customized Kirby CMS.
-                        Updating and creating internal tooling and environments for development and the rest of the team.
+                        Working on different kind of CMS systems, from out of the box Statamic, to fully customized
+                        Kirby CMS.
+                        Updating and creating internal tooling and environments for development and the rest of the
+                        team.
                     </p>
                 </div>
 
@@ -88,11 +102,13 @@
                     <div class="flex items-center">
                         <div class="w-3 h-3 bg-[#58b8bd] rounded-full mr-4"></div>
                         <h3 class="text-lg font-semibold">
-                            2014 - 2015 <span class="font-normal text-gray-600">| TravelOn - Intern & Web Developer</span>
+                            2014 - 2015 <span
+                                class="font-normal text-gray-600">| TravelOn - Intern & Web Developer</span>
                         </h3>
                     </div>
                     <p class="ml-7 text-gray-600">
-                        During my internship the other 2 developers left the company and I filled it until replacements were hired.
+                        During my internship the other 2 developers left the company and I filled it until replacements
+                        were hired.
                         Worked on a customer portal for my internship and maintaining the side as the developer.
                     </p>
                 </div>
@@ -117,7 +133,7 @@
             <h3 class="text-xl font-semibold mb-2">My code</h3>
             <p class="text-gray-700 mb-4">A little sneak peek of what I am up to.</p>
             <div class="h-auto rounded-md">
-              <x-github-activity />
+                <x-github-activity/>
             </div>
         </section>
 
@@ -136,4 +152,4 @@
                 <li>• And much more</li>
             </ul>
         </section>
-    @endsection
+@endsection
