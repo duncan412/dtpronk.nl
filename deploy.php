@@ -55,8 +55,10 @@ task('deploy', [
     'deploy:optimize',
     // 'artisan:migrate',
     'deploy:cleanup',
+    'deploy:unlock',
 ]);
 
 after('deploy:failed', 'deploy:unlock');
 
 after('deploy:success', 'artisan:queue:restart');
+
