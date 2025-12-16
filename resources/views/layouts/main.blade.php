@@ -22,10 +22,10 @@
 
             @yield('content')
 
-            <footer class="mt-20 text-center text-sm text-gray-500">
+            <footer class="mt-12 sm:mt-16 lg:mt-20 text-center text-xs sm:text-sm text-gray-500 px-4 pb-6">
                 Duncan Pronk 2019 - {{ date('Y') }}
             </footer>
-    </div>
+
     </main>
     </div>
 </body>
