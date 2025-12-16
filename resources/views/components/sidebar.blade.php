@@ -1,4 +1,4 @@
-<div>
+<div class="md:w-64">
     <!-- Mobile menu button -->
     <button
         id="mobile-menu-button"
@@ -11,16 +11,15 @@
     </button>
 
     <div
-        id="sidebar-overlay"
-        class="fixed inset-0 bg-black/50 z-30 hidden md:block"
+        class="fixed inset-0 bg-black/50 z-30 hidden"
     ></div>
 
     <div>
 
         <aside
             id="sidebar"
-            class="hidden md:visible w-64 bg-[#a7d9dd] text-gray-900 flex flex-col sticky top-0 h-screen transition-transform duration-300 ease-in-out
-           lg:static z-40 -translate-x-full lg:translate-x-0"
+            class="hidden md:block md:fixed w-64  bg-[#a7d9dd] text-gray-900 flex flex-col top-0 h-screen transition-transform duration-300 ease-in-out
+           z-40 -translate-x-full lg:translate-x-0"
         >
 
             <div class="flex flex-col items-center p-6 mt-8 lg:mt-0">
@@ -38,31 +37,4 @@
             </nav>
         </aside>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-
-            function openSidebar() {
-                if(overlay.classList.contains('hidden')) {
-
-                    sidebar.classList.remove('-translate-x-full');
-                    sidebar.classList.remove('hidden');
-                    overlay.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                }
-                else {
-                    sidebar.classList.add('-translate-x-full');
-                    sidebar.classList.add('hidden');
-                    overlay.classList.add('hidden');
-                    document.body.style.overflow = '';
-                }
-            }
-
-            mobileMenuButton.addEventListener('click', openSidebar);
-            overlay.addEventListener('click', closeSidebar);
-        });
-    </script>
 </div>
