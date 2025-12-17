@@ -53,7 +53,7 @@ task('deploy', [
     'deploy:writable',
     'deploy:symlink',
     'deploy:optimize',
-    // 'artisan:migrate',
+    'artisan:migrate',
     'deploy:cleanup',
     'deploy:unlock',
 ]);
