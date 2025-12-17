@@ -10,11 +10,16 @@ use Illuminate\View\Component;
 
 class GithubActivity extends Component
 {
+    /** @var array<array<array<string, int|string>>> */
     public array $columns = [];
+    /** @var array<string> */
     public array $monthLabels = [];
+    /** @var array<array<string, int>> */
     public array $current = [];
-    public Closure $levelForCount;
+    /** @var array<int, string> */
+
     public array $weekdayPositions = [];
+    public Closure $levelForCount;
 
     public function __construct(private readonly Github $gh)
     {
@@ -27,13 +32,13 @@ class GithubActivity extends Component
         $this->levelForCount = function (int $count): int {
             if ($count >= 20) return 4;
             if ($count >= 10) return 3;
-            if ($count >= 5)  return 2;
-            if ($count >= 1)  return 1;
+            if ($count >= 5) return 2;
+            if ($count >= 1) return 1;
             return 0;
         };
     }
 
-    public function convert()
+    public function convert(): void
     {
         $all = [];
 
@@ -47,7 +52,7 @@ class GithubActivity extends Component
         ksort($all);
 
         $firstDate = Carbon::parse(array_key_first($all))->startOfWeek();
-        $lastDate  = Carbon::parse(array_key_last($all))->endOfWeek();
+        $lastDate = Carbon::parse(array_key_last($all))->endOfWeek();
 
         $period = new \DatePeriod($firstDate, new \DateInterval('P1D'), $lastDate->copy()->addDay());
 
@@ -82,7 +87,7 @@ class GithubActivity extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.github-activity')
-            ->with('calendar', $this->convert());
+        $this->convert();
+        return view('components.github-activity');
     }
 }

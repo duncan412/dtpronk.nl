@@ -8,5 +8,6 @@ interface FieldsetInterface
 {
     public Block $block {
         get;
+        set;
     }
 }

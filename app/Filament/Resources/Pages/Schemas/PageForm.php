@@ -28,6 +28,8 @@ class PageForm
                                 ->required()
                                 ->columnSpanFull()
                                 ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                                    if (null === $state || null === $old) return;
+
                                     if (($get('slug') ?? '') !== Str::slug($old)) {
                                         return;
                                     }

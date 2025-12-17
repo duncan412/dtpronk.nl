@@ -19,6 +19,7 @@ class Page extends Model
         'content' => 'json',
     ];
 
+    /** @var array|string[] */
     public array $translatable = [
         'title',
         'content',
