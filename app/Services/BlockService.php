@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\Interfaces\FieldsetInterface;
+use Filament\Forms\Components\Builder\Block;
+
 class BlockService
 {
     /**
-     * @var array<string> $blockNames
+     * @param string[] $blockNames
+     * @return array<Block>
      */
     public function getBlocks(array $blockNames = []): array
     {
@@ -17,10 +21,10 @@ class BlockService
                 throw new \Error($blockName . ' fieldset does not exist.');
             }
 
-            $blocks[] = (new $class)->block;
+            /** @var FieldsetInterface $fieldset */
+            $fieldset = (new $class);
+            $blocks[] = $fieldset->block;
         }
-
-//        dd($blocks);
 
         return $blocks;
     }

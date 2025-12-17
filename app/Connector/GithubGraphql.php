@@ -18,7 +18,7 @@ class GithubGraphql
         $this->client = new Client([
             'base_uri' => config('services.github.graphql_endpoint'),
             'headers' => [
-                'Authorization' => 'Bearer ' . config('services.github.token'),
+                'Authorization' => 'Bearer ' . config('services.github.token', ''),
                 'Content-Type' => 'application/json',
                 'User-Agent' => 'dtpronk.nl'
             ]
@@ -27,11 +27,15 @@ class GithubGraphql
 
     public function getActivity(): ResponseInterface
     {
-        $queryAst = Parser::parse(
-            file_get_contents(
-                resource_path('queries/github/get_activity.gql')
-            )
+        $query = file_get_contents(
+            resource_path('queries/github/get_activity.gql')
         );
+
+        if (false === $query) {
+            throw new \Exception('Unable to read query file');
+        }
+
+        $queryAst = Parser::parse($query);
 
         $queryString = Printer::doPrint($queryAst);
 
