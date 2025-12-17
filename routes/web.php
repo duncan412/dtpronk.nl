@@ -6,4 +6,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/{page:slug}', [\App\Http\Controllers\PageController::class, 'index']);
+Route::get('/{slug}', [\App\Http\Controllers\PageController::class, 'index']);
