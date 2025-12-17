@@ -23,7 +23,6 @@ class PageForm
                 ->schema([
                     Section::make('Content')
                         ->schema([
-
                             TextInput::make('title')
                                 ->live(onBlur: true)
                                 ->required()
