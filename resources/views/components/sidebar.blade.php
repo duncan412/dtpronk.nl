@@ -18,7 +18,7 @@
 
         <aside
             id="sidebar"
-            class="hidden md:block md:fixed w-64  bg-[#a7d9dd] text-gray-900 flex flex-col top-0 h-screen transition-transform duration-300 ease-in-out
+            class="hidden md:block md:fixed w-64 bg-[#a7d9dd] dark:bg-gray-800 text-gray-900 dark:text-gray-100 flex flex-col top-0 h-screen transition-transform duration-300 ease-in-out
            z-40 -translate-x-full lg:translate-x-0"
         >
 

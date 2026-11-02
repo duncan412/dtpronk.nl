@@ -18,8 +18,28 @@ new Typed('#typed', {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    const themeToggle = document.getElementById('theme-toggle');
     const sidebar = document.getElementById('sidebar');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+    function updateThemeToggle(theme) {
+        const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        themeToggle.setAttribute('aria-label', label);
+        themeToggle.setAttribute('title', label);
+    }
+
+    if (themeToggle) {
+        updateThemeToggle(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+
+        themeToggle.addEventListener('click', function () {
+            const theme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+            document.documentElement.style.colorScheme = theme;
+            document.cookie = `theme=${theme}; Path=/; Max-Age=31536000; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
+            updateThemeToggle(theme);
+        });
+    }
 
     function openSidebar() {
         const elements = document.getElementsByTagName('main');
