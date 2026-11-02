@@ -48,7 +48,21 @@
                     <div class="flex items-start">
                         <div class="w-3 h-3 bg-[#58b8bd] rounded-full mr-3 sm:mr-4 mt-1 flex-shrink-0"></div>
                         <div>
-                            <h3 class="text-base sm:text-lg font-semibold">2025 - current</h3>
+                            <h3 class="text-base sm:text-lg font-semibold">2026 - current</h3>
+                            <span class="text-sm sm:text-base font-normal text-gray-600 block sm:inline">Rumble - Backend developer</span>
+                        </div>
+                    </div>
+                    <p class="ml-6 sm:ml-7 text-sm sm:text-base text-gray-600 mt-2">
+                        Working on the SaaS platform and contributing to its development and maintenance.
+                        Integrating AI, smart solutions, and optimizing the platform for better performance.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex items-start">
+                        <div class="w-3 h-3 bg-[#58b8bd] rounded-full mr-3 sm:mr-4 mt-1 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold">2025 - 2026</h3>
                             <span class="text-sm sm:text-base font-normal text-gray-600 block sm:inline">Qabana - Web Developer & DevOps</span>
                         </div>
                     </div>
