@@ -1,6 +1,6 @@
 @if (blank(config('services.github.token')))
     @php($githubUsername = config('services.github.username') ?: 'duncan412')
-    <p class="py-8 text-center text-sm text-gray-700">
+    <p class="py-8 text-center text-sm text-gray-700 dark:text-gray-300">
         GitHub activity is unavailable right now.
         <a
             href="https://github.com/{{ rawurlencode($githubUsername) }}"
