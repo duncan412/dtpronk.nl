@@ -16,7 +16,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.4"
+          php-version: "8.5"
 
       - name: Install dependencies
         run: composer install
@@ -27,4 +27,4 @@ jobs:
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
           dep: deploy
-          deployer-version: "7.5.12"
+          deployer-version: "8.0.5"
