@@ -7,8 +7,46 @@ use App\DTO\Github\ContributionCalendarDTO;
 use App\DTO\Github\ContributionDayDTO;
 use App\DTO\Github\ContributionWeekDTO;
 use App\Services\Github;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Cache;
 use Mockery;
+
+test('GitHub activity view links to the profile when the token is missing', function () {
+    config([
+        'services.github.token' => null,
+        'services.github.username' => 'duncan412',
+    ]);
+
+    $html = view('components.github-activity')->render();
+
+    expect($html)->toContain('href="https://github.com/duncan412"')
+        ->and($html)->toContain('View my GitHub profile')
+        ->and($html)->not->toContain('gh-heatmap-tooltip');
+});
+
+test('getActivity returns an empty calendar when the GitHub token is missing', function () {
+    config(['services.github.token' => null]);
+
+    $connector = new GithubGraphql;
+    $client = new Client([
+        'handler' => HandlerStack::create(new MockHandler([
+            new Response(401),
+        ])),
+        'http_errors' => true,
+    ]);
+
+    $clientProperty = new \ReflectionProperty(GithubGraphql::class, 'client');
+    $clientProperty->setValue($connector, $client);
+
+    $response = $connector->getActivity();
+    $calendar = json_decode((string) $response->getBody(), true)['data']['user']['contributionsCollection']['contributionCalendar'];
+
+    expect($calendar['totalContributions'])->toBe(0);
+    expect($calendar['weeks'])->toBe([]);
+});
 
 test('getActivity returns a filled ContributionCalendarDTO', function () {
     // Arrange

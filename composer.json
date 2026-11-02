@@ -6,7 +6,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "filament/filament": "^4.0",
         "guzzlehttp/guzzle": "^7.10",
         "lara-zeus/spatie-translatable": "^1.0",
